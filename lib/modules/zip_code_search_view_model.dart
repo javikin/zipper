@@ -21,14 +21,16 @@ class ZipCodeSearchViewModel extends ChangeNotifier {
   }
 
   searchCountries(String value) {
-    var countriesFilter = _countries.where((element) => element.name.startsWith(value));
-    _countries.clear();
-    _countries = countriesFilter.toList();
+    _countries = _countries.where((element) => element.name.startsWith(value)).toList();
     notifyListeners();
   }
 
-  searchZipCodeTapped(Function(ZipCodeInformation zip) onZipCodeSearched, String countryCode, String zipCode) async {
+  searchZipCodeTapped(
+    Function(ZipCodeInformation zip) onZipCodeChanged,
+    String countryCode,
+    String zipCode,
+  ) async {
     final zipCodeInformation = await _zipCodeService.getZipCodeDetails(countryCode: countryCode, zipCode: zipCode);
-    onZipCodeSearched(zipCodeInformation);
+    onZipCodeChanged(zipCodeInformation);
   }
 }
