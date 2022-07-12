@@ -7,4 +7,6 @@ abstract class ZipCodeService {
   });
 
   Future<List<Country>> getCountries();
+
+  Future<List<String>> getZipCodeByCountry(String country);
 }
