@@ -29,7 +29,9 @@ void main() {
       });
 
       test('When called searchCountries should filter with the value name the countries list', () async {
-        var model = _getViewModel();
+        final service = getAndRegisterZipCodeService();
+        when(service.getCountries()).thenAnswer((realInvocation) => Future(() => countries));
+        final model = _getViewModel();
         await model.initializeWidget();
         final initialLength = model.countries.length;
         await model.searchCountries('Al');

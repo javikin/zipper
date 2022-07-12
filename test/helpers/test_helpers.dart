@@ -1,12 +1,14 @@
 import 'package:mockito/annotations.dart';
 import 'package:zipper/locator.dart';
 import 'package:zipper/models/data_models.dart';
+import 'package:zipper/services/local_storage/storage_service.dart';
 import 'package:zipper/services/zip_code/zip_code_service.dart';
 
 import 'test_helpers.mocks.dart';
 
 @GenerateMocks([], customMocks: [
   MockSpec<ZipCodeService>(returnNullOnMissingStub: true),
+  MockSpec<StorageService>(returnNullOnMissingStub: true),
 ])
 MockZipCodeService getAndRegisterZipCodeService() {
   _removeRegistrationIfExists<ZipCodeService>();
@@ -15,12 +17,21 @@ MockZipCodeService getAndRegisterZipCodeService() {
   return service;
 }
 
+MockStorageService getAndRegisterStorageService() {
+  _removeRegistrationIfExists<StorageService>();
+  final service = MockStorageService();
+  locator.registerSingleton<StorageService>(service);
+  return service;
+}
+
 void registerServices() {
   getAndRegisterZipCodeService();
+  getAndRegisterStorageService();
 }
 
 void unregisterService() {
   locator.unregister<ZipCodeService>();
+  locator.unregister<StorageService>();
 }
 
 void _removeRegistrationIfExists<T extends Object>() {
