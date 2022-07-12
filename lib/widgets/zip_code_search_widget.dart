@@ -16,7 +16,7 @@ class ZipCodeSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<ZipCodeSearchViewModel>(
-      onModelReady: (model) => model.initializeWidget(),
+      onModelReady: (model) => model.initializeSearchWidget(),
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

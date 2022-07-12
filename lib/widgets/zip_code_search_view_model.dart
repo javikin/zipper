@@ -11,14 +11,24 @@ class ZipCodeSearchViewModel extends BaseViewModel {
   String? _zipCode;
 
   List<CountryView> _countries = [];
+  List<String> _zipCodes = [];
 
   List<CountryView> get countries => _countries;
+  List<String> get zipCodes => _zipCodes;
+  String? get zipCode => _zipCode;
   bool get isSearchButtonEnable => _countryCode != null && _zipCode != null;
 
-  Future<void> initializeWidget() async {
+  Future<void> initializeSearchWidget() async {
     final countries = await _zipCodeService.getCountries();
     logger.d(countries);
     _countries = countries.map((country) => CountryView.fromCountry(country)).toList();
+    notifyListeners();
+  }
+
+  void initializeListWidget() async {
+    _countryCode = 'mx';
+    _zipCodes = await _zipCodeService.getZipCodeByCountry('mx');
+    logger.d(_zipCodes);
     notifyListeners();
   }
 
@@ -42,8 +52,9 @@ class ZipCodeSearchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void onZipCodeChange(String value) {
+  void onZipCodeChange(String? value) {
     _zipCode = value;
+    logger.d('_zipCode -> $_zipCode');
     notifyListeners();
   }
 }

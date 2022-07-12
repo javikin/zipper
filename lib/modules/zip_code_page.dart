@@ -3,6 +3,7 @@ import 'package:zipper/models/data_views.dart';
 import 'package:zipper/modules/zip_code_view_model.dart';
 import 'package:zipper/utils/base_view.dart';
 import 'package:zipper/widgets/bottom_navigation_widget.dart';
+import 'package:zipper/widgets/zip_code_list_widget.dart';
 import 'package:zipper/widgets/zip_code_search_widget.dart';
 
 class ZipCodePage extends StatelessWidget {
@@ -20,6 +21,9 @@ class ZipCodePage extends StatelessWidget {
               children: [
                 model.searchViewType == SearchViewType.zipCode
                     ? ZipCodeSearchWidget(onZipCodeChanged: model.onZipCodeChanged)
+                    : const SizedBox(),
+                model.searchViewType == SearchViewType.list
+                    ? ZipCodeListWidget(onZipCodeChanged: model.onZipCodeChanged)
                     : const SizedBox(),
                 Expanded(
                   child: Card(

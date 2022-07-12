@@ -24,7 +24,7 @@ void main() {
         final service = getAndRegisterZipCodeService();
         when(service.getCountries()).thenAnswer((realInvocation) => Future(() => countries));
         final model = _getViewModel();
-        await model.initializeWidget();
+        await model.initializeSearchWidget();
         verify(service.getCountries());
         assert(model.countries.isNotEmpty);
       });
@@ -33,7 +33,7 @@ void main() {
         final service = getAndRegisterZipCodeService();
         when(service.getCountries()).thenAnswer((realInvocation) => Future(() => countries));
         final model = _getViewModel();
-        await model.initializeWidget();
+        await model.initializeSearchWidget();
         final countriesSearch = model.searchCountries('Al');
         assert(model.countries.length > countriesSearch.length);
       });
