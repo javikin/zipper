@@ -3,21 +3,47 @@ import 'package:logger/logger.dart';
 import 'package:zipper/locator.dart';
 import 'package:zipper/models/data_models.dart';
 import 'package:zipper/models/data_views.dart';
-import 'package:zipper/services/zip_code/zip_code_service.dart';
+import 'package:zipper/services/local_storage/storage_service.dart';
 
 class ZipCodeViewModel extends ChangeNotifier {
   final _logger = Logger();
-  final _zipCodeService = locator<ZipCodeService>();
+  final _storageService = locator<StorageService>();
 
   ZipCodeView? _zipCode;
+  SearchViewType _searchViewType = SearchViewType.none;
 
-  initializePage() async {}
+  ZipCodeView? get zipCode => _zipCode;
+  SearchViewType get searchViewType => _searchViewType;
 
-  onZipCodeChanged(ZipCodeInformation code) {}
+  initializePage() async {
+    final zipCodeInformation = await _storageService.getZipCodeInformation();
+    if (zipCodeInformation != null) {
+      _logger.d(zipCodeInformation);
+      _zipCode = ZipCodeView.fromZipCodeInformation(zipCodeInformation);
+      notifyListeners();
+    }
+  }
 
-  onZipCodeViewTapped() {}
+  onZipCodeChanged(ZipCodeInformation zipCodeInformation) async {
+    await _storageService.cacheZipCodeInformation(zipCodeInformation);
+    _zipCode = ZipCodeView.fromZipCodeInformation(zipCodeInformation);
+    notifyListeners();
+  }
 
-  onListViewTapped() {}
+  onHomeViewTapped() {
+    _searchViewType = SearchViewType.none;
+    notifyListeners();
+  }
 
-  onHomeViewTapped() {}
+  onZipCodeViewTapped() {
+    _searchViewType = SearchViewType.zipCode;
+    notifyListeners();
+  }
+
+  onListViewTapped() {
+    _searchViewType = SearchViewType.list;
+    notifyListeners();
+  }
 }
+
+enum SearchViewType { zipCode, list, none }
