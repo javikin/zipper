@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
 import 'package:logger/logger.dart';
 import 'package:zipper/locator.dart';
 import 'package:zipper/models/data_models.dart';
 import 'package:zipper/models/data_views.dart';
 import 'package:zipper/services/local_storage/storage_service.dart';
+import 'package:zipper/utils/base_view_model.dart';
 
-class ZipCodeViewModel extends ChangeNotifier {
+class ZipCodeViewModel extends BaseViewModel {
   final _logger = Logger();
   final _storageService = locator<StorageService>();
 
@@ -30,18 +30,8 @@ class ZipCodeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  onHomeViewTapped() {
-    _searchViewType = SearchViewType.none;
-    notifyListeners();
-  }
-
-  onZipCodeViewTapped() {
-    _searchViewType = SearchViewType.zipCode;
-    notifyListeners();
-  }
-
-  onListViewTapped() {
-    _searchViewType = SearchViewType.list;
+  onSelectedViewChanged(SearchViewType searchViewType) {
+    _searchViewType = searchViewType;
     notifyListeners();
   }
 }

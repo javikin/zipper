@@ -5,12 +5,10 @@ import 'package:zipper/utils/base_view.dart';
 import 'package:zipper/widgets/zip_code_search_view_model.dart';
 
 class ZipCodeSearchWidget extends StatelessWidget {
-  final SearchViewType mode;
   final Function(ZipCodeInformation zipCodeInformation) onZipCodeChanged;
 
   const ZipCodeSearchWidget({
     Key? key,
-    required this.mode,
     required this.onZipCodeChanged,
   }) : super(key: key);
 

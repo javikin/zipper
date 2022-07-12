@@ -37,17 +37,17 @@ void main() {
       });
       test('When called onHomeViewTapped searchViewType value should be none', () async {
         final model = _getViewModel();
-        await model.onHomeViewTapped();
+        await model.onSelectedViewChanged(SearchViewType.none);
         assert(model.searchViewType == SearchViewType.none);
       });
       test('When called onZipCodeViewTapped searchViewType value should be zipCode', () async {
         final model = _getViewModel();
-        await model.onZipCodeViewTapped();
+        await model.onSelectedViewChanged(SearchViewType.zipCode);
         assert(model.searchViewType == SearchViewType.zipCode);
       });
       test('When called onListViewTapped searchViewType value should be list', () async {
         final model = _getViewModel();
-        await model.onListViewTapped();
+        await model.onSelectedViewChanged(SearchViewType.list);
         assert(model.searchViewType == SearchViewType.list);
       });
     });

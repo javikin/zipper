@@ -3,7 +3,7 @@ import 'package:zipper/models/data_models.dart';
 class ZipCodeView {
   final String code;
   final String country;
-  final List<PlaceView> places;
+  final String places;
 
   ZipCodeView({
     required this.code,
@@ -14,7 +14,7 @@ class ZipCodeView {
   ZipCodeView.fromZipCodeInformation(ZipCodeInformation zipCodeInformation)
       : code = zipCodeInformation.postCode,
         country = zipCodeInformation.country,
-        places = zipCodeInformation.places.map((e) => PlaceView.fromPlace(e)).toList();
+        places = zipCodeInformation.places.map((e) => PlaceView.fromPlace(e).name).toList().join(', ');
 }
 
 class CountryView {
