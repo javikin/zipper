@@ -21,6 +21,7 @@ class CountryView {
   final String name;
   final String flag;
   final String code;
+
   CountryView({
     required this.name,
     required this.flag,
@@ -29,7 +30,7 @@ class CountryView {
 
   CountryView.fromCountry(Country country)
       : name = country.name,
-        flag = country.flag,
+        flag = country.unicodeFlag,
         code = country.iso2;
 }
 
@@ -46,3 +47,5 @@ class PlaceView {
       : name = place.name,
         state = place.state;
 }
+
+enum SearchViewType { zipCode, list, none }

@@ -41,9 +41,9 @@ void _removeRegistrationIfExists<T extends Object>() {
 }
 
 const countries = [
-  Country(name: 'Afghanistan', flag: '', iso2: 'AF', iso3: 'AFG'),
-  Country(name: 'Albania', flag: '', iso2: 'AL', iso3: 'ALB'),
-  Country(name: 'Algeria', flag: '', iso2: 'DZ', iso3: 'DZA'),
+  Country(name: 'Afghanistan', unicodeFlag: '', iso2: 'AF', iso3: 'AFG'),
+  Country(name: 'Albania', unicodeFlag: '', iso2: 'AL', iso3: 'ALB'),
+  Country(name: 'Algeria', unicodeFlag: '', iso2: 'DZ', iso3: 'DZA'),
 ];
 
 const zipCodeInformation = ZipCodeInformation(

@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:zipper/models/data_models.dart';
-import 'package:zipper/modules/zip_code_search_view_model.dart';
+import 'package:zipper/models/data_views.dart';
+import 'package:zipper/widgets/zip_code_search_view_model.dart';
 
 import '../helpers/test_helpers.dart';
 
@@ -33,9 +34,8 @@ void main() {
         when(service.getCountries()).thenAnswer((realInvocation) => Future(() => countries));
         final model = _getViewModel();
         await model.initializeWidget();
-        final initialLength = model.countries.length;
-        await model.searchCountries('Al');
-        assert(model.countries.length < initialLength);
+        final countriesSearch = model.searchCountries('Al');
+        assert(model.countries.length > countriesSearch.length);
       });
 
       test('When called searchZipCodeTapped should return a zipCodeInformation instance if found it', () async {
@@ -47,7 +47,9 @@ void main() {
           (realInvocation) => Future(() => zipCodeInformation),
         );
         final model = _getViewModel();
-        await model.searchZipCodeTapped(functions.onZipCodeChanged, countryCode, zipCode);
+        model.onCountryViewSelected(CountryView(name: '', flag: '', code: 'mx'));
+        model.onZipCodeChange(zipCode);
+        await model.searchZipCodeTapped(functions.onZipCodeChanged);
         verify(service.getZipCodeDetails(countryCode: countryCode, zipCode: zipCode));
         verify(functions.onZipCodeChanged(zipCodeInformation));
       });

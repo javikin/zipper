@@ -7,7 +7,7 @@ part 'data_models.g.dart';
 class Country with _$Country {
   const factory Country({
     required String name,
-    required String flag,
+    required String unicodeFlag,
     required String iso2,
     required String iso3,
   }) = _Country;

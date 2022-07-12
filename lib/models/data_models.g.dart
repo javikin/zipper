@@ -8,7 +8,7 @@ part of 'data_models.dart';
 
 _$_Country _$$_CountryFromJson(Map<String, dynamic> json) => _$_Country(
       name: json['name'] as String,
-      flag: json['flag'] as String,
+      unicodeFlag: json['unicodeFlag'] as String,
       iso2: json['iso2'] as String,
       iso3: json['iso3'] as String,
     );
@@ -16,7 +16,7 @@ _$_Country _$$_CountryFromJson(Map<String, dynamic> json) => _$_Country(
 Map<String, dynamic> _$$_CountryToJson(_$_Country instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'flag': instance.flag,
+      'unicodeFlag': instance.unicodeFlag,
       'iso2': instance.iso2,
       'iso3': instance.iso3,
     };

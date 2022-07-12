@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:zipper/models/data_models.dart';
+import 'package:zipper/models/data_views.dart';
 import 'package:zipper/modules/zip_code_view_model.dart';
 
 import '../helpers/test_helpers.dart';

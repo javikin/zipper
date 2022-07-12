@@ -21,7 +21,7 @@ Country _$CountryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Country {
   String get name => throw _privateConstructorUsedError;
-  String get flag => throw _privateConstructorUsedError;
+  String get unicodeFlag => throw _privateConstructorUsedError;
   String get iso2 => throw _privateConstructorUsedError;
   String get iso3 => throw _privateConstructorUsedError;
 
@@ -34,7 +34,7 @@ mixin _$Country {
 abstract class $CountryCopyWith<$Res> {
   factory $CountryCopyWith(Country value, $Res Function(Country) then) =
       _$CountryCopyWithImpl<$Res>;
-  $Res call({String name, String flag, String iso2, String iso3});
+  $Res call({String name, String unicodeFlag, String iso2, String iso3});
 }
 
 /// @nodoc
@@ -48,7 +48,7 @@ class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
-    Object? flag = freezed,
+    Object? unicodeFlag = freezed,
     Object? iso2 = freezed,
     Object? iso3 = freezed,
   }) {
@@ -57,9 +57,9 @@ class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      flag: flag == freezed
-          ? _value.flag
-          : flag // ignore: cast_nullable_to_non_nullable
+      unicodeFlag: unicodeFlag == freezed
+          ? _value.unicodeFlag
+          : unicodeFlag // ignore: cast_nullable_to_non_nullable
               as String,
       iso2: iso2 == freezed
           ? _value.iso2
@@ -79,7 +79,7 @@ abstract class _$$_CountryCopyWith<$Res> implements $CountryCopyWith<$Res> {
           _$_Country value, $Res Function(_$_Country) then) =
       __$$_CountryCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String flag, String iso2, String iso3});
+  $Res call({String name, String unicodeFlag, String iso2, String iso3});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$_CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? flag = freezed,
+    Object? unicodeFlag = freezed,
     Object? iso2 = freezed,
     Object? iso3 = freezed,
   }) {
@@ -103,9 +103,9 @@ class __$$_CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      flag: flag == freezed
-          ? _value.flag
-          : flag // ignore: cast_nullable_to_non_nullable
+      unicodeFlag: unicodeFlag == freezed
+          ? _value.unicodeFlag
+          : unicodeFlag // ignore: cast_nullable_to_non_nullable
               as String,
       iso2: iso2 == freezed
           ? _value.iso2
@@ -124,7 +124,7 @@ class __$$_CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
 class _$_Country implements _Country {
   const _$_Country(
       {required this.name,
-      required this.flag,
+      required this.unicodeFlag,
       required this.iso2,
       required this.iso3});
 
@@ -134,7 +134,7 @@ class _$_Country implements _Country {
   @override
   final String name;
   @override
-  final String flag;
+  final String unicodeFlag;
   @override
   final String iso2;
   @override
@@ -142,7 +142,7 @@ class _$_Country implements _Country {
 
   @override
   String toString() {
-    return 'Country(name: $name, flag: $flag, iso2: $iso2, iso3: $iso3)';
+    return 'Country(name: $name, unicodeFlag: $unicodeFlag, iso2: $iso2, iso3: $iso3)';
   }
 
   @override
@@ -151,7 +151,8 @@ class _$_Country implements _Country {
         (other.runtimeType == runtimeType &&
             other is _$_Country &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.flag, flag) &&
+            const DeepCollectionEquality()
+                .equals(other.unicodeFlag, unicodeFlag) &&
             const DeepCollectionEquality().equals(other.iso2, iso2) &&
             const DeepCollectionEquality().equals(other.iso3, iso3));
   }
@@ -161,7 +162,7 @@ class _$_Country implements _Country {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(flag),
+      const DeepCollectionEquality().hash(unicodeFlag),
       const DeepCollectionEquality().hash(iso2),
       const DeepCollectionEquality().hash(iso3));
 
@@ -179,7 +180,7 @@ class _$_Country implements _Country {
 abstract class _Country implements Country {
   const factory _Country(
       {required final String name,
-      required final String flag,
+      required final String unicodeFlag,
       required final String iso2,
       required final String iso3}) = _$_Country;
 
@@ -188,7 +189,7 @@ abstract class _Country implements Country {
   @override
   String get name;
   @override
-  String get flag;
+  String get unicodeFlag;
   @override
   String get iso2;
   @override

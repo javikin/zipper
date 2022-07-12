@@ -45,5 +45,3 @@ class ZipCodeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-enum SearchViewType { zipCode, list, none }

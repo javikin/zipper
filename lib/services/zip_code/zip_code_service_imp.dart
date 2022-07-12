@@ -9,14 +9,14 @@ class ZipCodeServiceImp implements ZipCodeService {
     required String zipCode,
   }) async {
     var dio = Dio();
-    final response = await dio.get('https://google.com');
+    final response = await dio.get('https://api.zippopotam.us/$countryCode/$zipCode');
     return ZipCodeInformation.fromJson(response.data);
   }
 
   @override
   Future<List<Country>> getCountries() async {
     var dio = Dio();
-    final response = await dio.get('https://countriesnow.space/api/v0.1/countries/flag/images');
+    final response = await dio.get('https://countriesnow.space/api/v0.1/countries/flag/unicode');
     final elements = response.data['data'] as List;
     return elements.map((element) => Country.fromJson(element)).toList();
   }
