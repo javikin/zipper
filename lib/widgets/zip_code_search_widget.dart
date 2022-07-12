@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zipper/models/data_models.dart';
 import 'package:zipper/models/data_views.dart';
+import 'package:zipper/theme/text_styles.dart';
 import 'package:zipper/utils/base_view.dart';
 import 'package:zipper/widgets/zip_code_search_view_model.dart';
 
@@ -19,30 +20,60 @@ class ZipCodeSearchWidget extends StatelessWidget {
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Search'),
-          const Text('Country:'),
-          Autocomplete<CountryView>(
-            optionsBuilder: (TextEditingValue textEditingValue) => model.searchCountries(textEditingValue.text),
-            onSelected: (CountryView selection) => model.onCountryViewSelected(selection),
-            displayStringForOption: (CountryView option) => option.name,
-            optionsViewBuilder: (
-              BuildContext context,
-              AutocompleteOnSelected<CountryView> onSelected,
-              Iterable<CountryView> options,
-            ) =>
-                _CountryListOptions(onSelected: onSelected, options: options),
+          const Padding(
+            padding: EdgeInsets.only(top: 12),
+            child: Text('Search', style: Texts.h1),
           ),
-          const Text('Zip Code:'),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Zip code',
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Autocomplete<CountryView>(
+              optionsBuilder: (TextEditingValue textEditingValue) => model.searchCountries(textEditingValue.text),
+              onSelected: (CountryView selection) => model.onCountryViewSelected(selection),
+              fieldViewBuilder: (
+                BuildContext context,
+                TextEditingController fieldTextEditingController,
+                FocusNode fieldFocusNode,
+                VoidCallback onFieldSubmitted,
+              ) {
+                return TextFormField(
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    hintText: 'Country',
+                  ),
+                  controller: fieldTextEditingController,
+                  focusNode: fieldFocusNode,
+                  style: Texts.p1,
+                );
+              },
+              displayStringForOption: (CountryView option) => option.name,
+              optionsViewBuilder: (
+                BuildContext context,
+                AutocompleteOnSelected<CountryView> onSelected,
+                Iterable<CountryView> options,
+              ) =>
+                  _CountryListOptions(onSelected: onSelected, options: options),
             ),
-            onChanged: model.onZipCodeChange,
           ),
-          TextButton(
-            onPressed: () => model.searchZipCodeTapped(onZipCodeChanged),
-            child: const Text('Search'),
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: TextFormField(
+              style: Texts.p1,
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                hintText: 'Zip Code',
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: model.onZipCodeChange,
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: OutlinedButton(
+                onPressed: model.isSearchButtonEnable ? () => model.searchZipCodeTapped(onZipCodeChanged) : null,
+                child: const Text('Search', style: Texts.button),
+              ),
+            ),
           )
         ],
       ),
@@ -65,19 +96,16 @@ class _CountryListOptions extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Material(
-        child: Container(
-          color: Colors.grey,
-          child: ListView.builder(
-            padding: const EdgeInsets.all(2),
-            itemCount: options.length,
-            itemBuilder: (BuildContext context, int index) {
-              final CountryView option = options.elementAt(index);
-              return GestureDetector(
-                onTap: () => onSelected(option),
-                child: _CountryOption(country: option),
-              );
-            },
-          ),
+        child: ListView.builder(
+          padding: const EdgeInsets.all(2),
+          itemCount: options.length,
+          itemBuilder: (BuildContext context, int index) {
+            final CountryView option = options.elementAt(index);
+            return GestureDetector(
+              onTap: () => onSelected(option),
+              child: _CountryOption(country: option),
+            );
+          },
         ),
       ),
     );
@@ -93,9 +121,7 @@ class _CountryOption extends StatelessWidget {
     return ListTile(
       title: Text(
         '${country.flag}  ${country.name}',
-        style: const TextStyle(
-          color: Colors.white,
-        ),
+        style: Texts.p1,
       ),
     );
   }
