@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:zipper/models/data_models.dart';
-import 'package:zipper/services/zip_code_service.dart';
+import 'package:zipper/services/zip_code/zip_code_service.dart';
 
 class ZipCodeServiceImp implements ZipCodeService {
   @override

@@ -1,7 +1,7 @@
 import 'package:mockito/annotations.dart';
 import 'package:zipper/locator.dart';
 import 'package:zipper/models/data_models.dart';
-import 'package:zipper/services/zip_code_service.dart';
+import 'package:zipper/services/zip_code/zip_code_service.dart';
 
 import 'test_helpers.mocks.dart';
 
