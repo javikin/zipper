@@ -3,6 +3,7 @@ import 'package:zipper/models/data_views.dart';
 import 'package:zipper/modules/zip_code_view_model.dart';
 import 'package:zipper/utils/base_view.dart';
 import 'package:zipper/widgets/bottom_navigation_widget.dart';
+import 'package:zipper/widgets/city_information_widget.dart';
 import 'package:zipper/widgets/zip_code_list_widget.dart';
 import 'package:zipper/widgets/zip_code_search_widget.dart';
 
@@ -25,26 +26,11 @@ class ZipCodePage extends StatelessWidget {
                 model.searchViewType == SearchViewType.list
                     ? ZipCodeListWidget(onZipCodeChanged: model.onZipCodeChanged)
                     : const SizedBox(),
-                Expanded(
-                  child: Card(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('City Information'),
-                            Text('${model.zipCode?.country}'),
-                            Text('${model.zipCode?.code}'),
-                            Text('${model.zipCode?.places}'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                model.zipCode != null
+                    ? Expanded(
+                        child: CityInformationWidget(zipCode: model.zipCode!),
+                      )
+                    : const SizedBox(),
                 BottomNavigationWidget(onSelectedViewChanged: model.onSelectedViewChanged)
               ],
             ),

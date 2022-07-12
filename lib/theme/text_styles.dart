@@ -16,7 +16,7 @@ class Texts {
   static const p2 = TextStyle(
     backgroundColor: Colors.transparent,
     fontSize: TextSizes.p2,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.normal,
   );
 
   static const button = TextStyle(
