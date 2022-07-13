@@ -19,7 +19,7 @@ class ZipCodeSearchViewModel extends BaseViewModel {
   bool get isSearchButtonEnable => _countryCode != null && _zipCode != null;
 
   Future<void> initializeSearchWidget() async {
-    final countries = await _zipCodeService.getCountries();
+    final countries = await safeCall(() => _zipCodeService.getCountries());
     logger.d(countries);
     _countries = countries.map((country) => CountryView.fromCountry(country)).toList();
     notifyListeners();
@@ -27,7 +27,7 @@ class ZipCodeSearchViewModel extends BaseViewModel {
 
   void initializeListWidget() async {
     _countryCode = 'mx';
-    _zipCodes = await _zipCodeService.getZipCodeByCountry('mx');
+    _zipCodes = await safeCall(() => _zipCodeService.getZipCodeByCountry('mx'));
     logger.d(_zipCodes);
     notifyListeners();
   }
@@ -38,10 +38,10 @@ class ZipCodeSearchViewModel extends BaseViewModel {
 
   Future<void> searchZipCodeTapped(Function(ZipCodeInformation zip) onZipCodeChanged) async {
     if (isSearchButtonEnable) {
-      final zipCodeInformation = await _zipCodeService.getZipCodeDetails(
-        countryCode: _countryCode!,
-        zipCode: _zipCode!,
-      );
+      final zipCodeInformation = await safeCall(() => _zipCodeService.getZipCodeDetails(
+            countryCode: _countryCode!,
+            zipCode: _zipCode!,
+          ));
       logger.d(zipCodeInformation);
       onZipCodeChanged(zipCodeInformation);
     }
