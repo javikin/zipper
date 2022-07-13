@@ -25,7 +25,7 @@ class ZipCodeSearchViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void initializeListWidget() async {
+  Future<void> initializeListWidget() async {
     _countryCode = 'mx';
     _zipCodes = await safeCall(() => _zipCodeService.getZipCodeByCountry('mx'));
     logger.d(_zipCodes);

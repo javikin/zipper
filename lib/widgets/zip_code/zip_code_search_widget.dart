@@ -3,7 +3,7 @@ import 'package:zipper/models/data_models.dart';
 import 'package:zipper/models/data_views.dart';
 import 'package:zipper/theme/text_styles.dart';
 import 'package:zipper/utils/base_view.dart';
-import 'package:zipper/widgets/zip_code_search_view_model.dart';
+import 'package:zipper/widgets/zip_code/zip_code_search_view_model.dart';
 
 class ZipCodeSearchWidget extends StatelessWidget {
   final Function(ZipCodeInformation zipCodeInformation) onZipCodeChanged;

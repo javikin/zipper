@@ -40,6 +40,11 @@ class MockZipCodeService extends _i1.Mock implements _i3.ZipCodeService {
       (super.noSuchMethod(Invocation.method(#getCountries, []),
               returnValue: Future<List<_i2.Country>>.value(<_i2.Country>[]))
           as _i4.Future<List<_i2.Country>>);
+  @override
+  _i4.Future<List<String>> getZipCodeByCountry(String? country) =>
+      (super.noSuchMethod(Invocation.method(#getZipCodeByCountry, [country]),
+              returnValue: Future<List<String>>.value(<String>[]))
+          as _i4.Future<List<String>>);
 }
 
 /// A class which mocks [StorageService].

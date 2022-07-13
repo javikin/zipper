@@ -5,7 +5,7 @@ import 'package:zipper/services/local_storage/storage_service.dart';
 import 'package:zipper/services/local_storage/storage_service_imp.dart';
 import 'package:zipper/services/zip_code/zip_code_service.dart';
 import 'package:zipper/services/zip_code/zip_code_service_imp.dart';
-import 'package:zipper/widgets/zip_code_search_view_model.dart';
+import 'package:zipper/widgets/zip_code/zip_code_search_view_model.dart';
 
 GetIt locator = GetIt.instance;
 

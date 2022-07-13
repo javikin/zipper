@@ -60,3 +60,5 @@ const zipCodeInformation = ZipCodeInformation(
     )
   ],
 );
+
+const zipCodes = ['97143', '97144', '97145', '97146', '97147'];

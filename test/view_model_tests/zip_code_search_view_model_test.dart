@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:zipper/models/data_models.dart';
 import 'package:zipper/models/data_views.dart';
-import 'package:zipper/widgets/zip_code_search_view_model.dart';
+import 'package:zipper/widgets/zip_code/zip_code_search_view_model.dart';
 
 import '../helpers/test_helpers.dart';
 
@@ -27,6 +27,15 @@ void main() {
         await model.initializeSearchWidget();
         verify(service.getCountries());
         assert(model.countries.isNotEmpty);
+      });
+
+      test('When called initializeWidget should initialize countries list', () async {
+        final service = getAndRegisterZipCodeService();
+        when(service.getZipCodeByCountry('mx')).thenAnswer((realInvocation) => Future(() => zipCodes));
+        final model = _getViewModel();
+        await model.initializeListWidget();
+        verify(service.getZipCodeByCountry('mx'));
+        assert(model.zipCodes.isNotEmpty);
       });
 
       test('When called searchCountries should filter with the value name the countries list', () async {
