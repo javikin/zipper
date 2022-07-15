@@ -29,7 +29,7 @@ void main() {
         assert(model.countries.isNotEmpty);
       });
 
-      test('When called initializeWidget should initialize countries list', () async {
+      test('When called initializeWidget should initialize zipCodes list', () async {
         final service = getAndRegisterZipCodeService();
         when(service.getZipCodeByCountry('mx')).thenAnswer((realInvocation) => Future(() => zipCodes));
         final model = _getViewModel();
