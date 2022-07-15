@@ -26,11 +26,9 @@ class ZipCodePage extends StatelessWidget {
                 model.searchViewType == SearchViewType.list
                     ? ZipCodeListWidget(onZipCodeChanged: model.onZipCodeChanged)
                     : const SizedBox(),
-                model.zipCode != null
-                    ? Expanded(
-                        child: CityInformationWidget(zipCode: model.zipCode!),
-                      )
-                    : const SizedBox(),
+                Expanded(
+                  child: CityInformationWidget(zipCode: model.zipCode),
+                ),
                 BottomNavigationWidget(onSelectedViewChanged: model.onSelectedViewChanged)
               ],
             ),

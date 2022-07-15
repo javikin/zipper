@@ -3,7 +3,7 @@ import 'package:zipper/models/data_views.dart';
 import 'package:zipper/theme/text_styles.dart';
 
 class CityInformationWidget extends StatelessWidget {
-  final ZipCodeView zipCode;
+  final ZipCodeView? zipCode;
 
   const CityInformationWidget({
     Key? key,
@@ -25,27 +25,33 @@ class CityInformationWidget extends StatelessWidget {
                 'Last City Information',
                 style: Texts.h1,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  'Zip code: ${zipCode.code}',
-                  style: Texts.p1,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Text(
-                  zipCode.country,
-                  style: Texts.p1,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text(
-                  'Places: ${zipCode.places}',
-                  style: Texts.p2,
-                ),
-              ),
+              zipCode != null
+                  ? Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Text(
+                            'Zip code: ${zipCode!.code}',
+                            style: Texts.p1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Text(
+                            zipCode!.country,
+                            style: Texts.p1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: Text(
+                            'Places: ${zipCode!.places}',
+                            style: Texts.p2,
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),
